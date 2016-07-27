@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="classpath*:**/dao.xml"/>
+
+    <bean id="orderService" class="com.luxoft.probation.crud.service.impl.OrderServiceImpl">
+        <property name="orderDAO" ref="orderDAO"/>
+    </bean>
+    <bean id="countryService" class="com.luxoft.probation.crud.service.impl.GEOServiceImpl">
+        <property name="cityDAO" ref="cityDAO"/>
+        <property name="countryDAO" ref="countryDAO"/>
+    </bean>
+</beans>

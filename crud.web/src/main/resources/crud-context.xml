@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="classpath:**/service.xml"/>
+
+    <bean id="viewJSON" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"/>
+
+    <bean id="baseController" abstract="true" class="com.luxoft.probation.crud.web.controller.BaseController">
+        <property name="viewJSON" ref="viewJSON"/>
+    </bean>
+
+    <bean id="countryController" class="com.luxoft.probation.crud.web.controller.CountryController"/>
+    <bean id="orderController" class="com.luxoft.probation.crud.web.controller.OrderController"/>
+
+</beans>
