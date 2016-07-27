@@ -38,13 +38,10 @@
       <property name="caretWidth" class="java.lang.Integer" />
     </properties>
   </component>
-  <component name="EntryPointsManager">
-    <entry_points version="2.0" />
-  </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/crud.web" />
   </component>
-  <component name="IdProvider" IDEtalkID="BC2CAEAB5FF5312F43BD6D7CF0792CB1" />
+  <component name="IdProvider" IDEtalkID="A4D780E6E728146A9AF8722E1BA87FE1" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -62,7 +59,21 @@
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/out" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_3" default="true" assert-keyword="false" jdk-15="false" />
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
