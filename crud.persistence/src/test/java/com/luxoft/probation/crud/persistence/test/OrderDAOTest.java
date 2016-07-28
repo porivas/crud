@@ -24,8 +24,8 @@ import static org.junit.Assert.assertNotNull;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/dao-test.xml")
-public class OrderDAOTestDAO {
-    private static final Logger LOG = LoggerFactory.getLogger(OrderDAOTestDAO.class);
+public class OrderDAOTest {
+    private static final Logger LOG = LoggerFactory.getLogger(OrderDAOTest.class);
 
     private static final String DEPARTURE_DATE_VALUE = "01-06-2016 00:10";
     private static final String ARRIVAL_DATE_VALUE = "01-06-2016 02:40";

@@ -1,6 +1,7 @@
 package com.luxoft.probation.crud.persistence.dao;
 
 import com.luxoft.probation.crud.core.domain.Order;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  * <p>
  * Created by hhayryan on 5/27/2016.
  */
+@Component
 public interface OrderDAO {
 
     void createOrder(Order order);

@@ -4,6 +4,10 @@ import com.luxoft.probation.crud.core.domain.Order;
 import com.luxoft.probation.crud.core.util.BoardClassEnum;
 import com.luxoft.probation.crud.persistence.dao.OrderDAO;
 import com.luxoft.probation.crud.service.OrderService;
+import com.sun.javafx.beans.IDProperty;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Import;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
@@ -15,7 +19,7 @@ import java.util.List;
  */
 public class OrderServiceImpl implements OrderService {
 
-
+    @Autowired
     private OrderDAO orderDAO;
 
     @Override
@@ -51,9 +55,5 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getOrdersByDate(Date date) {
         return orderDAO.getOrdersByDate(date);
-    }
-
-    public void setOrderDAO(OrderDAO orderDAO) {
-        this.orderDAO = orderDAO;
     }
 }
