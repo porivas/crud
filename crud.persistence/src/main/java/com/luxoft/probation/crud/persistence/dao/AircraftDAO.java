@@ -1,6 +1,7 @@
 package com.luxoft.probation.crud.persistence.dao;
 
 import com.luxoft.probation.crud.core.domain.Aircraft;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * <p>
  * Created by HHayryan on 5/20/2016.
  */
+@Component
 public interface AircraftDAO {
     void createAircraft(Aircraft aircraft);
 

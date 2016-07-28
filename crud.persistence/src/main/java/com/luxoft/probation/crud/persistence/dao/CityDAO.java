@@ -2,6 +2,7 @@ package com.luxoft.probation.crud.persistence.dao;
 
 import com.luxoft.probation.crud.core.domain.City;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * <p>
  * Created by HHayryan on 5/19/2016.
  */
+@Component
 public interface CityDAO {
 
     void createCity(City city) throws DuplicateKeyException;

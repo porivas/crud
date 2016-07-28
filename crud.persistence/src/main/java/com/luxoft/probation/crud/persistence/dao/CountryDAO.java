@@ -1,6 +1,7 @@
 package com.luxoft.probation.crud.persistence.dao;
 
 import com.luxoft.probation.crud.core.domain.Country;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * <p>
  * Created by hhayryan on 5/30/2016.
  */
+@Component
 public interface CountryDAO {
 
     void createCountry(Country country);

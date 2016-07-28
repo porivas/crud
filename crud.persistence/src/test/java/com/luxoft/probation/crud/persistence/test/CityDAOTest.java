@@ -27,9 +27,9 @@ import static org.junit.Assert.assertNull;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/dao-test.xml")
-public class CityDAOTestDAO {
+public class CityDAOTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CityDAOTestDAO.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CityDAOTest.class);
     @Autowired
     CityDAO cityDAO;
 

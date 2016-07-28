@@ -3,7 +3,7 @@ package com.luxoft.probation.crud.web.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 /**
  * Base controller
@@ -15,9 +15,9 @@ public class BaseController {
     public static final String JSON_MESSAGE = "message";
     public static final String JSON_OK = "OK";
 
-    protected MappingJacksonJsonView viewJSON;
+    protected MappingJackson2JsonView viewJSON;
 
-    public void setViewJSON(MappingJacksonJsonView viewJSON) {
+    public void setViewJSON(MappingJackson2JsonView viewJSON) {
         this.viewJSON = viewJSON;
     }
 

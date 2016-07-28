@@ -26,8 +26,8 @@ import static org.junit.Assert.assertNull;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/dao-test.xml")
-public class AircraftDAOTestDAO {
-    private static final Logger LOG = LoggerFactory.getLogger(AircraftDAOTestDAO.class);
+public class AircraftDAOTest {
+    private static final Logger LOG = LoggerFactory.getLogger(AircraftDAOTest.class);
 
     private static final String AIRCRAFT_MODEL = "Airbas 306";
     private static final String COMPANY_NAME = "Armenian Airlines";
