@@ -2,6 +2,7 @@ package com.luxoft.probation.crud.service;
 
 import com.luxoft.probation.crud.core.domain.Country;
 import com.luxoft.probation.crud.core.dto.CountryDTO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * <p>
  * Created by hhayryan on 5/30/2016.
  */
+@Service
 public interface GEOService {
 
     void createCountryWithCities(CountryDTO countryDto);

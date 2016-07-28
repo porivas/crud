@@ -2,6 +2,7 @@ package com.luxoft.probation.crud.persistence.dao;
 
 import com.luxoft.probation.crud.core.domain.Flight;
 import com.luxoft.probation.crud.core.dto.FlightRoutDTO;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  * <p>
  * Created by HHayryan on 5/24/2016.
  */
+@Component
 public interface FlightDAO {
 
     void createFlight(Flight flight);

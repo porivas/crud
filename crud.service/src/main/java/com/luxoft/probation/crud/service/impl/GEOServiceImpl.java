@@ -6,6 +6,8 @@ import com.luxoft.probation.crud.core.dto.CountryDTO;
 import com.luxoft.probation.crud.persistence.dao.CityDAO;
 import com.luxoft.probation.crud.persistence.dao.CountryDAO;
 import com.luxoft.probation.crud.service.GEOService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -16,8 +18,10 @@ import java.util.List;
  */
 public class GEOServiceImpl implements GEOService {
 
-    private CountryDAO countryDAO;
+    @Autowired
+    CountryDAO countryDAO;
 
+    @Autowired
     private CityDAO cityDAO;
 
     @Override
@@ -81,13 +85,5 @@ public class GEOServiceImpl implements GEOService {
 
     public List<Country> getCountriesByPage(int from, int to) {
         return countryDAO.getCountriesByPage(from, to);
-    }
-
-    public void setCountryDAO(CountryDAO countryDAO) {
-        this.countryDAO = countryDAO;
-    }
-
-    public void setCityDAO(CityDAO cityDAO) {
-        this.cityDAO = cityDAO;
     }
 }
