@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="crud.web:war">
-    <output-path>$PROJECT_DIR$/crud.web/target</output-path>
-    <root id="archive" name="crud.web.war">
-      <element id="artifact" artifact-name="crud.web:war exploded" />
-    </root>
-  </artifact>
-</component>
