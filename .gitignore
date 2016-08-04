@@ -1,0 +1,9 @@
+.idea/*
+crud.core/crud.core.iml
+crud.core/target/*
+crud.persistence/crud.persistence.iml
+crud.persistence/target/*
+crud.service/crud.service.iml
+crud.service/target/*
+crud.web/crud.web.iml
+crud.web/target/*
