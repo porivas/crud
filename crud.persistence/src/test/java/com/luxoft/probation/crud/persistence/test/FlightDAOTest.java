@@ -1,16 +1,11 @@
 package com.luxoft.probation.crud.persistence.test;
 
-import com.luxoft.probation.crud.core.domain.Aircraft;
-import com.luxoft.probation.crud.core.domain.City;
-import com.luxoft.probation.crud.core.domain.Company;
-import com.luxoft.probation.crud.core.domain.Flight;
+import com.luxoft.probation.crud.core.domain.*;
 import com.luxoft.probation.crud.core.dto.FlightRoutDTO;
 import com.luxoft.probation.crud.core.util.DateUtil;
-import com.luxoft.probation.crud.persistence.dao.AircraftDAO;
-import com.luxoft.probation.crud.persistence.dao.CityDAO;
-import com.luxoft.probation.crud.persistence.dao.CompanyDAO;
-import com.luxoft.probation.crud.persistence.dao.CountryDAO;
-import com.luxoft.probation.crud.persistence.dao.FlightDAO;
+import com.luxoft.probation.crud.persistence.dao.*;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -20,18 +15,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Flight DAO implementations test
@@ -57,7 +43,18 @@ public class FlightDAOTest {
     private static final String CITY_KE = "KIEV";
     private static final String CITY_BR = "BERLIN";
     private static final String CITY_VN = "VIENA";
-    private static final String CITY_PH = "PRAHA";
+    private static final String CITY_PH = "PRAGUE";
+
+    private static final String COUNTRY_POLAND = "Poland";
+    private static final String COUNTRY_ARMENIA = "Armenia";
+    private static final String COUNTRY_RUSSIA = "Russian";
+    private static final String COUNTRY_UKRAIN = "Ukrain";
+    private static final String COUNTRY_GERMANY = "Germany";
+    private static final String COUNTRY_AUSTRIA = "Austria";
+    private static final String COUNTRY_CZECH = "Czech";
+
+    private Map<String, Country> countryMap;
+    private Map<String, City> cityMap;
 
     @Autowired
     CityDAO cityDAO;
@@ -73,6 +70,98 @@ public class FlightDAOTest {
 
     @Autowired
     CountryDAO countryDAO;
+
+    @Before
+    public void init() {
+        countryMap = new HashMap<>(7);
+        cityMap = new HashMap<>(7);
+
+        Country poland = new Country();
+        poland.setName(COUNTRY_POLAND);
+        countryDAO.createCountry(poland);
+        countryMap.put(COUNTRY_POLAND, poland);
+
+        Country armenia = new Country();
+        armenia.setName(COUNTRY_ARMENIA);
+        countryDAO.createCountry(armenia);
+        countryMap.put(COUNTRY_ARMENIA, armenia);
+
+        Country russia = new Country();
+        russia.setName(COUNTRY_RUSSIA);
+        countryDAO.createCountry(russia);
+        countryMap.put(COUNTRY_RUSSIA, russia);
+
+        Country ukrain = new Country();
+        ukrain.setName(COUNTRY_UKRAIN);
+        countryDAO.createCountry(ukrain);
+        countryMap.put(COUNTRY_UKRAIN, ukrain);
+
+        Country germany = new Country();
+        germany.setName(COUNTRY_GERMANY);
+        countryDAO.createCountry(germany);
+        countryMap.put(COUNTRY_GERMANY, germany);
+
+        Country austria = new Country();
+        austria.setName(COUNTRY_AUSTRIA);
+        countryDAO.createCountry(austria);
+        countryMap.put(COUNTRY_AUSTRIA, austria);
+
+        Country czech = new Country();
+        czech.setName(COUNTRY_CZECH);
+        countryDAO.createCountry(czech);
+        countryMap.put(COUNTRY_CZECH, czech);
+
+        //Cities
+        City waw = new City();
+        waw.setName(CITY_WAW);
+        waw.setCountryId(poland.getId());
+        cityDAO.createCity(waw);
+        cityMap.put(CITY_WAW, waw);
+
+        City evn = new City();
+        evn.setName(CITY_EVN);
+        evn.setCountryId(armenia.getId());
+        cityDAO.createCity(evn);
+        cityMap.put(CITY_EVN, evn);
+
+        City br = new City();
+        br.setName(CITY_BR);
+        br.setCountryId(germany.getId());
+        cityDAO.createCity(br);
+        cityMap.put(CITY_BR, br);
+
+        City mos = new City();
+        mos.setName(CITY_MOS);
+        mos.setCountryId(russia.getId());
+        cityDAO.createCity(mos);
+        cityMap.put(CITY_MOS, mos);
+
+        City ke = new City();
+        ke.setName(CITY_KE);
+        ke.setCountryId(ukrain.getId());
+        cityDAO.createCity(ke);
+        cityMap.put(CITY_KE, ke);
+
+        City vn = new City();
+        vn.setName(CITY_VN);
+        vn.setCountryId(austria.getId());
+        cityDAO.createCity(vn);
+        cityMap.put(CITY_VN, vn);
+
+        City ph = new City();
+        ph.setName(CITY_PH);
+        ph.setCountryId(czech.getId());
+        cityDAO.createCity(ph);
+        cityMap.put(CITY_PH, ph);
+
+    }
+
+    @After
+    public void clean() {
+        cityMap.keySet().forEach(key -> cityDAO.deleteCity(cityMap.get(key).getId()));
+
+        countryMap.keySet().forEach(key -> countryDAO.deleteCountry(countryMap.get(key).getId()));
+    }
 
     @Test
     public void createFlightTest() throws ParseException {
@@ -208,8 +297,8 @@ public class FlightDAOTest {
     public void getFlightsByDeptDateAndFromToCities() throws ParseException {
         LOG.info("Start deleteFlightTest");
         createMockList();
-        City departureCity = cityDAO.getCityByName("Wroclaw");
-        City arrivalCity = cityDAO.getCityByName("Yervan");
+        City departureCity = cityMap.get(CITY_WAW);
+        City arrivalCity = cityMap.get(CITY_EVN);
         List<Flight> selectedFlightsList = flightDAO.getFlightsByDeptDateAndFromToCities(
                 DateUtil.getDateFromString(DEPARTURE_DATE_VALUE), departureCity.getId(), arrivalCity.getId());
 
@@ -261,13 +350,9 @@ public class FlightDAOTest {
     }
 
     private void createMockList() throws ParseException {
-        City deptCity = new City();
-        deptCity.setName("Wroclaw");
-        cityDAO.createCity(deptCity);
+        City deptCity = cityMap.get(CITY_WAW);
 
-        City arrivalCity = new City();
-        arrivalCity.setName("Yervan");
-        cityDAO.createCity(arrivalCity);
+        City arrivalCity = cityMap.get(CITY_EVN);
 
         Aircraft aircraft = new Aircraft();
         aircraft.setModel("Airbas 306");
@@ -303,18 +388,13 @@ public class FlightDAOTest {
 
         aircraftDAO.deleteAircraft(mockFlight.getAircraft().getId());
         companyDAO.deleteCompany(mockFlight.getAircraft().getCompany().getId());
-        cityDAO.deleteCity(mockFlight.getDepartureCity().getId());
-        cityDAO.deleteCity(mockFlight.getArrivalCity().getId());
     }
 
     private void deleteRoutMockList(List<Flight> mockList) {
-        Set<City> citySet = new HashSet<>();
         Set<Company> companySet = new HashSet<>();
         Set<Aircraft> aircraftSet = new HashSet<>();
 
         for (Flight flight : mockList) {
-            citySet.add(flight.getDepartureCity());
-            citySet.add(flight.getArrivalCity());
             aircraftSet.add(flight.getAircraft());
             companySet.add(flight.getAircraft().getCompany());
 
@@ -322,7 +402,6 @@ public class FlightDAOTest {
         }
 
         aircraftDAO.deleteAircraftBatch(Arrays.asList(aircraftSet.toArray(new Aircraft[]{})));
-        cityDAO.deleteCityBatch(Arrays.asList(citySet.toArray(new City[]{})));
         companyDAO.deleteCompanyBatch(Arrays.asList(companySet.toArray(new Company[]{})));
     }
 
@@ -340,34 +419,6 @@ public class FlightDAOTest {
         Company ausAirCompany = new Company();
         ausAirCompany.setName(COMPANY_AUS_AIR);
         companyDAO.createCompany(ausAirCompany);
-
-        City waw = new City();
-        waw.setName(CITY_WAW);
-        cityDAO.createCity(waw);
-
-        City evn = new City();
-        evn.setName(CITY_EVN);
-        cityDAO.createCity(evn);
-
-        City br = new City();
-        br.setName(CITY_BR);
-        cityDAO.createCity(br);
-
-        City mos = new City();
-        mos.setName(CITY_MOS);
-        cityDAO.createCity(mos);
-
-        City ke = new City();
-        ke.setName(CITY_KE);
-        cityDAO.createCity(ke);
-
-        City vn = new City();
-        vn.setName(CITY_VN);
-        cityDAO.createCity(vn);
-
-        City ph = new City();
-        ph.setName(CITY_PH);
-        cityDAO.createCity(ph);
 
         Aircraft aircraftLot = new Aircraft();
         aircraftLot.setCompany(lotCompany);
@@ -390,7 +441,16 @@ public class FlightDAOTest {
         aircraftAus.setSecondClassCount(360);
         aircraftDAO.createAircraft(aircraftAus);
 
-        flights.add(initFlight("01-06-2016 10:45", "01-06-2016 12:10", waw, vn, aircraftLot));
+        City waw = cityMap.get(CITY_WAW);
+        City vn = cityMap.get(CITY_VN);
+        City ph = cityMap.get(CITY_PH);
+        City ke = cityMap.get(CITY_KE);
+        City evn = cityMap.get(CITY_EVN);
+        City mos = cityMap.get(CITY_MOS);
+        City br = cityMap.get(CITY_BR);
+
+        flights.add(initFlight("01-06-2016 10:45", "01-06-2016 12:10",  waw,
+                vn, aircraftLot));
         flights.add(initFlight("01-06-2016 13:45", "01-06-2016 15:30", waw, ph, aircraftLot));
         flights.add(initFlight("01-06-2016 14:45", "01-06-2016 17:50", waw, ke, aircraftLot));
 
@@ -427,17 +487,8 @@ public class FlightDAOTest {
         Flight flight = new Flight();
         flight.setDepartureDate(DateUtil.getDateFromString(DateUtil.DEFAULT_DATE_TIME_PATTERN, DEPARTURE_DATE_VALUE));
         flight.setArrivalDate(DateUtil.getDateFromString(DateUtil.DEFAULT_DATE_TIME_PATTERN, ARRIVAL_DATE_VALUE));
-
-        City deptCity = new City();
-        deptCity.setName("Wroclaw");
-        cityDAO.createCity(deptCity);
-        flight.setDepartureCity(deptCity);
-
-        City arrivalCity = new City();
-        arrivalCity.setName("Yervan");
-        cityDAO.createCity(arrivalCity);
-        flight.setArrivalCity(arrivalCity);
-
+        flight.setDepartureCity(cityMap.get(CITY_WAW));
+        flight.setArrivalCity(cityMap.get(CITY_EVN));
         flight.setFirstClassPrice(500);
         flight.setSecondClassPrice(400);
 
@@ -461,7 +512,5 @@ public class FlightDAOTest {
         flightDAO.deleteFlight(flight.getId());
         aircraftDAO.deleteAircraft(flight.getAircraft().getId());
         companyDAO.deleteCompany(flight.getAircraft().getCompany().getId());
-        cityDAO.deleteCity(flight.getDepartureCity().getId());
-        cityDAO.deleteCity(flight.getArrivalCity().getId());
     }
 }
