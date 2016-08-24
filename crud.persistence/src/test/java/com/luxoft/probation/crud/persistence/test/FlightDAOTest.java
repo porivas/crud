@@ -6,7 +6,11 @@ import com.luxoft.probation.crud.core.domain.Company;
 import com.luxoft.probation.crud.core.domain.Flight;
 import com.luxoft.probation.crud.core.dto.FlightRoutDTO;
 import com.luxoft.probation.crud.core.util.DateUtil;
-import com.luxoft.probation.crud.persistence.dao.*;
+import com.luxoft.probation.crud.persistence.dao.AircraftDAO;
+import com.luxoft.probation.crud.persistence.dao.CityDAO;
+import com.luxoft.probation.crud.persistence.dao.CompanyDAO;
+import com.luxoft.probation.crud.persistence.dao.CountryDAO;
+import com.luxoft.probation.crud.persistence.dao.FlightDAO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -16,9 +20,18 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Queue;
+import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Flight DAO implementations test
